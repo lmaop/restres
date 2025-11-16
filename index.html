@@ -1,4 +1,5 @@
 <html>
+<input type="text" id="userInput" placeholder="Enter issue..." />
 <button onclick="sendToSalesforce()">Send to Salesforce</button>
 <script>
     async function callSalesforceApi(url, accessToken,body) {
@@ -29,8 +30,10 @@
         const url = "https://orgfarm-2fdfbb07a7-dev-ed.develop.my.salesforce.com/services/apexrest/Users";
         const token = "00Dg5000000qzx3!AQEAQM8okKTotUFpbEXIrCWkD_7Wyks.sDCTqBTQlM740SXwO9SedYXKahS8GCNccJzaNHqrSjfOcQRXWfY3z3CUXnUwg3qw";
 
+        const inputValue = document.getElementById("userInput").value;
+
         const payload = {
-            "subject":"I have an issue with my JS"
+            "subject": inputValue
         };
 
         const result = await callSalesforceApi(url, token, payload);
