@@ -1,7 +1,7 @@
 <html>
 <button onclick="sendToSalesforce()">Send to Salesforce</button>
 <script>
-    async function callSalesforceApi(url, accessToken) {
+    async function callSalesforceApi(url, accessToken,body) {
         try {
             const response = await fetch(url, {
                 method: "GET",
@@ -9,7 +9,7 @@
                     "Authorization": `Bearer ${accessToken}`,
                     "Content-Type": "application/json"
                 },
-                //body: JSON.stringify(body)
+                body: JSON.stringify(body)
             });
 
             if (!response.ok) {
@@ -30,10 +30,10 @@
         const token = "00Dg5000000qzx3!AQEAQM8okKTotUFpbEXIrCWkD_7Wyks.sDCTqBTQlM740SXwO9SedYXKahS8GCNccJzaNHqrSjfOcQRXWfY3z3CUXnUwg3qw";
 
         const payload = {
-
+            "subject":"I have an issue with my JS"
         };
 
-        const result = await callSalesforceApi(url, token);
+        const result = await callSalesforceApi(url, token, payload);
         console.log(result);
     }
 
