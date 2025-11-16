@@ -1,0 +1,42 @@
+<html>
+<button onclick="sendToSalesforce()">Send to Salesforce</button>
+<script>
+    async function callSalesforceApi(url, accessToken) {
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                },
+                //body: JSON.stringify(body)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Salesforce API Error ${response.status}: ${errorText}`);
+            }
+
+            return await response.json();
+
+        } catch (error) {
+            console.error("Salesforce API call failed:", error);
+            throw error;
+        }
+    }
+
+    async function sendToSalesforce() {
+        const url = "https://orgfarm-2fdfbb07a7-dev-ed.develop.my.salesforce.com/services/apexrest/Users";
+        const token = "Bearer 00Dg5000000qzx3!AQEAQM8okKTotUFpbEXIrCWkD_7Wyks.sDCTqBTQlM740SXwO9SedYXKahS8GCNccJzaNHqrSjfOcQRXWfY3z3CUXnUwg3qw";
+
+        const payload = {
+
+        };
+
+        const result = await callSalesforceApi(url, token);
+        console.log(result);
+    }
+
+</script>
+
+</html>
