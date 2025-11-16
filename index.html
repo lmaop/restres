@@ -4,7 +4,7 @@
     async function callSalesforceApi(url, accessToken,body) {
         try {
             const response = await fetch(url, {
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Authorization": `Bearer ${accessToken}`,
                     "Content-Type": "application/json"
